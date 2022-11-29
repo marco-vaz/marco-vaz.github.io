@@ -11,6 +11,7 @@
     <link href="css/aos.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 	<!-- Add the slick-theme.css if you want default styling -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
 	<!-- Add the slick-theme.css if you want default styling -->
@@ -18,7 +19,17 @@
 	<link rel="stylesheet" href="js/cube/jquery.flipbox.css">
     <style>
             body { margin: 0; background-color: #000; };
-			
+
+div {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .mine {
     margin: 0 20px;
     box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.15);
@@ -157,14 +168,59 @@
 
   gtag('config', 'UA-130756035-1');
 </script>
+<script
+src="https://code.jquery.com/jquery-3.6.1.min.js"
+integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+crossorigin="anonymous">
+</script>
+<script>
+  document.addEventListener('readystatechange', event => {
+  switch (document.readyState) {
+    case "loading":
+      console.log("document.readyState: ", document.readyState,
+       `- The document is still loading.`
+       );
+      break;
+    case "interactive":
+      console.log("document.readyState: ", document.readyState, 
+        `- The document has finished loading DOM. `,
+        `- "DOMContentLoaded" event`
+        );
+      break;
+    case "complete":
+      $(function() {
+        var url = window.location.href
+        var mcolor = url ? url.split('?')[1].split('+')[1].split('#')[0] : window.location.search.slice(1);
+        var cscolor = mcolor
+        document.getElementById("buttonhire").style.backgroundColor = 'blue' ;
+        document.getElementById("buttoncv").style.backgroundColor = 'blue' ;
+        $('.btn-primary').hover( function() {$( this ).css({"background":cscolor})},function() {$( this ).css({"background":"blue"})} )
+        $('#employeeabout p a').hover( function() {$( this ).css({"color":cscolor})},function() {$( this ).css({"color":"blue"})} )
+        $('.progress-badge a').hover( function() {$( this ).css({"color":cscolor})},function() {$( this ).css({"color":"blue"})} )
+        $('.h5 a').hover( function() {$( this ).css({"color":cscolor})},function() {$( this ).css({"color":"blue"})} )
+        $('.category a').hover( function() {$( this ).css({"color":cscolor})},function() {$( this ).css({"color":"blue"})} )
+        $('.page-header').css({"background":"linear-gradient(0deg, rgba(44, 44, 44, 0.2), "+ cscolor +")"})
+        $('.progress').css({"background":"light"+ cscolor})
+        $('.progress-bar').css({"background":cscolor})
+        $('.progress-value').css({"color":cscolor})
+        $(".col-md-3.bg-primary").attr('style', 'background-color: '+ cscolor +' !important');
+      });
 
+      console.log("document.readyState: ", document.readyState, 
+        `- The page DOM with Sub-resources are now fully loaded. `,
+        `- "load" event`
+        );
+      break;
+  }
+});
+</script>
 </head>
   <body id="top">
     <header>
       <div class="profile-page sidebar-collapse">
         <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
           <div class="container">
-            <div class="navbar-translate"><a class="navbar-brand" href="#" rel="tooltip">Marco Trancoso Vaz</a>
+            <div class="navbar-translate"><a class="navbar-brand" href="#" rel="tooltip" >Marco Trancoso Vaz</a>
               <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-bar bar1"></span><span class="navbar-toggler-bar bar2"></span><span class="navbar-toggler-bar bar3"></span></button>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -193,9 +249,9 @@
       </div>
       <div class="container">
         <div class="content-center">
-          <div class="cc-profile-image"><a href="#"><img src="images/mtv.png" alt="Profile Picture"/></a></div>
-          <div class="h2 title">Marco Trancoso Vaz</div>
-          <p class="category text-white">Security Consultant, Blockchain enthusiast, Pseudo Data Scientist, Amateur Photographer</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="./mtv-cv.pdf" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
+          <div class="cc-profile-image"><a href="#"><img id="employeephoto" src="images/mtv.png" alt="Profile Picture"/></a></div>
+          <div class="h2 title" id="employeename">Marco Trancoso Vaz</div>
+          <p class="category text-white" id="shortdesc">Security Consultant, Blockchain enthusiast, Pseudo Data Scientist, Amateur Photographer</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" id="buttonhire" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="./mtv-cv.pdf" data-aos="zoom-in" id="buttoncv" data-aos-anchor="data-aos-anchor">Download CV</a>
         </div>
       </div>
       <div class="section">
@@ -218,9 +274,11 @@
         <div class="col-lg-6 col-md-12">
           <div class="card-body">
             <div class="h4 mt-0 title">About</div>
-            <p>Hi! I am Marco Trancoso Vaz. Information Technology Security specialist, Blockchain enthusiast, Data Scientist wannabe, hobbyist developer and photographer.</p>
-			<p> With over 25 years of professional expertise, I've specialized my skills on different areas such as, Management, Compliance, Security, Delivery and many others. Former CISO, DevOPs, Blue Team, ISO and other frameworks senior consultant.  <a href="https://www.linkedin.com/in/marcovaz" title="Visit my Linkedin profile page" target="_blank">Learn More</a></p>
-           <p>As a goal, I want to continue learning, applying the knowledge that I continually acquire, which allows me to help organizations design, implement and acquire the necessary levels of operability in line with the objectives of their business.</p>
+            <div id="employeeabout">
+              <p>Hi! I am Marco Trancoso Vaz. Information Technology Security specialist, Blockchain enthusiast, Data Scientist wannabe, hobbyist developer and photographer.</p>
+              <p> With over 25 years of professional expertise, I've specialized my skills on different areas such as, Management, Compliance, Security, Delivery and many others. Former CISO, DevOPs, Blue Team, ISO and other frameworks senior consultant.  <a href="https://www.linkedin.com/in/marcovaz" title="Visit my Linkedin profile page" id="learnmore" target="_blank">Learn More</a></p>
+              <p>As a goal, I want to continue learning, applying the knowledge that I continually acquire, which allows me to help organizations design, implement and acquire the necessary levels of operability in line with the objectives of their business.</p>
+            </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-12">
@@ -230,25 +288,25 @@
               <div class="col-sm-4"><strong class="text-uppercase">Age:</strong></div>
               <div class="col-sm-8" id="age"></div>
 			  <script>
-			  const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 31556925994)
-			  document.getElementById("age").innerHTML = getAge('1972-08-16');
+//			  const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 31556925994)
+//			  document.getElementById("age").innerHTML = getAge('1972-08-16');
 			  </script>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-              <div class="col-sm-8">marco.trancoso.vaz@gmail.com</div>
+              <div class="col-sm-8" id="employeeemail"">marco.trancoso.vaz@gmail.com</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
-              <div class="col-sm-8">+351 915 037 431</div>
+              <div class="col-sm-8" id="employephone">+351 915 037 431</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Address:</strong></div>
-              <div class="col-sm-8">S. Pedro do Estoril, Cascais, Portugal</div>
+              <div class="col-sm-8" id="employeesmalladdress">S. Pedro do Estoril, Cascais, Portugal</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
-              <div class="col-sm-8">Portuguese, English, French, Spanish</div>
+              <div class="col-sm-8" id="employeelanguages">Portuguese, English, French, Spanish</div>
             </div>
           </div>
         </div>
@@ -260,7 +318,7 @@
   <div class="container">
     <div class="h4 text-center mb-4 title">Professional Skills</div>
     <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-      <div class="card-body">
+      <div class="card-body" id="skills">
         <div class="row">
           <div class="col-md-6">
             <div class="progress-container progress-primary"><span class="progress-badge"><a href='ht</a>tps://en.wikipedia.org/wiki/Governance,_risk_management,_and_compliance'>Governance,risk management,compliance</a></span>
@@ -362,7 +420,7 @@
   </div>
 </div>
 <div class="section" id="experience">
-  <div class="container cc-experience">
+  <div class="container cc-experience" id="xperience">
     <div class="h4 text-center mb-4 title">Work Experience</div>
     <div class="card">
       <div class="row">
@@ -521,7 +579,7 @@
   </div>
 </div>
 <div class="section" id="education">
-  <div class="container cc-education">
+  <div class="container cc-education" id="edu">
     <div class="h4 text-center mb-4 title">Education</div>
     <div class="card">
       <div class="row">
@@ -595,7 +653,7 @@
           <li data-target="#cc-Indicators" data-slide-to="2"></li>
           <li data-target="#cc-Indicators" data-slide-to="3"></li>
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner" id="employeeprojects">
           <div class="carousel-item active">
             <div class="row">
               <div class="col-lg-2 col-md-3 cc-reference-header">
@@ -676,8 +734,9 @@
           <li class="active" data-target="#cc-Indicators" data-slide-to="0"></li>
           <li data-target="#cc-Indicators" data-slide-to="1"></li>
           <li data-target="#cc-Indicators" data-slide-to="2"></li>
+          <li data-target="#cc-Indicators" data-slide-to="3"></li>
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner" id="employeereferences">
           <div class="carousel-item active">
             <div class="row">
               <div class="col-lg-2 col-md-3 cc-reference-header"><img src="./images/jbarreto.jpg" alt="Image"/>
@@ -723,7 +782,7 @@
   </div>
 </div>
 <div class="section" id="logos">
-	<div class="h4 mb-4 text-center title">Expertise/Certifications</div><br>
+	<div id="employeeexpertise" class="h4 mb-4 text-center title">Expertise/Certifications</div><br>
   <div class="container logos">
   <section class="customer-logos slider">
 	<div><img class="ffb-id-hpuuv43 fg-image card img-responsive fg-text-dark" src="./images/expertise/AlienVault.svg.png"></div>
@@ -836,17 +895,21 @@
         <p>&copy; Creative CV. All rights reserved.<br>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p>
       </div>
     </footer>
-    <script src="js/core/jquery.3.2.1.min.js"></script>
+    <!-- <script src="js/core/jquery.3.2.1.min.js"></script> -->
+    <script
+      src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+      integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+      crossorigin="anonymous">
+    </script>
     <script src="js/core/popper.min.js"></script>
     <script src="js/core/bootstrap.min.js"></script>
-    <script src="js/now-ui-kit.js?v=1.1.0"></script>
+    <!-- <script src="js/now-ui-kit.js?v=1.1.0"></script> -->
     <script src="js/aos.js"></script>
     <script src="scripts/main.js"></script>
 	<script src="js/three.min.js"></script>
 	<!-- <script src="/examples/js/renderers/CanvasRenderer.js"></script> -->
 	<script src="js/OrbitControls.js"></script>	
 	<script src="js/Detector.js"></script>		
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script>
 
 	$("#sphere").resizable({handles: 'n,w,s,e', minWidth: 200, maxWidth: 600});    
@@ -867,13 +930,16 @@
 
 		var renderer = Detector.webgl ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
 		renderer.setSize(width, height);
-
+    var url = window.location.href
+    var picname = url ? url.split('?')[1].split('+')[2].split('#')[0] : window.location.search.slice(1);
+    THREE.ImageUtils.crossOrigin = '';
 		var sphere = new THREE.Mesh(
 			new THREE.SphereGeometry(100, 20, 20),
 			new THREE.MeshBasicMaterial({
-				map: THREE.ImageUtils.loadTexture('./pano/capitaldoimperio.jpg')
+				map: THREE.ImageUtils.loadTexture('./pano/'+picname+'.jpg')
 			})
 		);
+    //sphere.map.minFilter = THREE.LinearFilter
 		sphere.scale.x = -1;
 		scene.add(sphere);
 
@@ -940,7 +1006,18 @@ $(document).ready(function(){
   });
 });
 </script>
-        <script src="js/cube/jquery.flipbox.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+<script>
+  $.getScript( "js/userdata.js" )
+    .done(function( script, textStatus ) {
+      console.log( textStatus );
+    })
+    .fail(function( jqxhr, settings, exception ) {
+      console.log("Failed");
+  });
+</script>
+<script src="js/cube/jquery.flipbox.js"></script>
 
   </body>
 </html>
